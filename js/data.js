@@ -13,6 +13,7 @@ window.addEventListener('beforeunload', function (event) {
 }
 );
 
-if (localStorage !== null) {
-  data = JSON.parse('javascript-local-storage');
+const previousNotes = localStorage.getItem('javascript-local-storage');
+if (previousNotes !== null) {
+  data = JSON.parse(previousNotes);
 }
