@@ -1,5 +1,68 @@
-.header {
+body {
+  background-color: rgb(237, 235, 237);
+}
+
+header {
+  width: 100%;
   background-color: navy;
   color: white;
+  height: 2.8rem;
+}
+
+button {
+  background-color: navy;
+  color: white;
+  width: 70px;
+  height: 30px;
+  border-radius: 10px;
+  margin-left: 600px;
+  margin-top: 2%;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  width: 90%;
+  margin-left: 3%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  height: 1.8rem;
+}
+
+textarea {
+  width: 90%;
+  margin-right: 10%;
+  margin-left: 3%;
+  margin-top: 1%;
+}
+
+span {
+  margin-left: 3%;
+  padding-top: 3rem;
+}
+
+img {
   width: 100%;
+  margin-bottom: 1%;
+}
+
+.entry-header {
+  margin-right: 80%;
+  font-size: 1.2rem;
+  display: flex;
+}
+
+.notes {
+  margin-left: 3.5%;
+}
+
+.body {
+  font-family: "Work Sans", sans-serif;
+}
+
+h1 h2 {
+  font-family: Merriweather, serif;
 }

@@ -5,7 +5,7 @@ $image.addEventListener('input', function (event) {
 }
 );
 
-const $form = document.getElementById('form');
+const $form = document.querySelector('#form');
 
 document.addEventListener('submit', function (event) {
   event.preventDefault();
