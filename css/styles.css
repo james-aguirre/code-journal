@@ -20,19 +20,15 @@ button {
 }
 
 input {
-  width: 95%;
+  width: 100%;
   margin-top: 1%;
   margin-bottom: 1%;
   height: 1.8rem;
 }
 
 textarea {
-  width: 95%;
+  width: 100%;
   margin-top: 1%;
-}
-
-span {
-  margin-left: 1%;
 }
 
 img {
@@ -42,9 +38,6 @@ img {
 
 .entry-header {
   font-size: 1.2rem;
-}
-
-.notes {
   margin-left: 1%;
 }
 
@@ -54,4 +47,8 @@ img {
 
 h1 h2 {
   font-family: Merriweather, serif;
+}
+
+.header {
+  margin-left: 0.5%;
 }
