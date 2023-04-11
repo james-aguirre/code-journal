@@ -11,6 +11,9 @@
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous"
     referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Work+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
@@ -18,10 +21,53 @@
 <body>
   <header>
     <div class="container">
+      <div class="header">
+        <h1>Code Journal</h1>
+      </div>
     </div>
   </header>
   <main class="container">
-    <div data-view="entry-form"></div>
+    <div class="row">
+      <div class="entry-header">
+        <h2>New Entry</h2>
+      </div>
+    </div>
+    <div data-view="entry-form">
+      <form action="" id="form">
+        <div class="row">
+          <div class="column-half">
+            <img src="images/placeholder-image-square.jpg" alt="placeholder-image" id="img-placeholder">
+          </div>
+          <div class="column-half">
+            <label for="title"><span>Title</span></label>
+            <input type="text"
+                id="title"
+                name="title"
+                required>
+            <label for="img"><span>Photo URL</span></label>
+            <input type="text"
+                 id="img"
+                name="img"
+                required>
+          </div>
+          <div class="column-full">
+            <label for="notes"><span>Notes</span></label>
+            <textarea
+              id="notes"
+              name="notes"
+              rows="8"
+              required>
+            </textarea>
+          </div>
+          <div class="form-actions">
+            <button
+              type="submit"
+              class="save">Save
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
     <div data-view="entries" class="hidden"></div>
   </main>
   <script src="js/data.js"></script>

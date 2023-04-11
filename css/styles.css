@@ -1,0 +1,58 @@
+body {
+  background-color: rgb(237, 235, 237);
+}
+
+header {
+  width: 100%;
+  background-color: navy;
+  color: white;
+  height: 2.8rem;
+}
+
+button {
+  background-color: navy;
+  color: white;
+  width: 70px;
+  height: 30px;
+  border-radius: 10px;
+  margin-top: 2%;
+  margin-left: 48rem;
+}
+
+input {
+  width: 100%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  height: 1.8rem;
+}
+
+textarea {
+  width: 100%;
+  margin-top: 1%;
+}
+
+img {
+  width: 100%;
+  margin-bottom: 1%;
+}
+
+.entry-header {
+  font-size: 1.2rem;
+  margin-left: 1%;
+}
+
+.body {
+  font-family: "Work Sans", sans-serif;
+}
+
+h1 h2 {
+  font-family: Merriweather, serif;
+}
+
+.header {
+  margin-left: 0.5%;
+}
+
+.form-actions {
+  display: flex;
+}
