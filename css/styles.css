@@ -15,8 +15,8 @@ button {
   width: 70px;
   height: 30px;
   border-radius: 10px;
-  margin-left: 44rem;
   margin-top: 2%;
+  margin-left: 48rem;
 }
 
 input {
@@ -51,4 +51,8 @@ h1 h2 {
 
 .header {
   margin-left: 0.5%;
+}
+
+.form-actions {
+  display: flex;
 }
