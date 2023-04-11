@@ -15,33 +15,24 @@ button {
   width: 70px;
   height: 30px;
   border-radius: 10px;
-  margin-left: 600px;
+  margin-left: 44rem;
   margin-top: 2%;
 }
 
-.row {
-  display: flex;
-  justify-content: center;
-}
-
 input {
-  width: 90%;
-  margin-left: 3%;
+  width: 95%;
   margin-top: 1%;
   margin-bottom: 1%;
   height: 1.8rem;
 }
 
 textarea {
-  width: 90%;
-  margin-right: 10%;
-  margin-left: 3%;
+  width: 95%;
   margin-top: 1%;
 }
 
 span {
-  margin-left: 3%;
-  padding-top: 3rem;
+  margin-left: 1%;
 }
 
 img {
@@ -50,13 +41,11 @@ img {
 }
 
 .entry-header {
-  margin-right: 80%;
   font-size: 1.2rem;
-  display: flex;
 }
 
 .notes {
-  margin-left: 3.5%;
+  margin-left: 1%;
 }
 
 .body {

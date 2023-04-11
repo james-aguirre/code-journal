@@ -12,10 +12,10 @@ document.addEventListener('submit', function (event) {
   const messageData = {};
   messageData.entryId = data.nextEntryId;
   data.nextEntryId++;
-  messageData.title = $form.title.value;
-  messageData.img = $form.img.value;
-  messageData.notes = $form.notes.value;
-  data.entries.push(messageData);
+  messageData.title = event.target.elements.title.value;
+  messageData.img = event.target.elements.img.value;
+  messageData.notes = event.target.elements.notes.value;
+  data.entries.unshift(messageData);
   $photo.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
 }
