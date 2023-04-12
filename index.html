@@ -22,17 +22,20 @@
   <header>
     <div class="container">
       <div class="header">
-        <h1>Code Journal</h1>
+        <div class="row">
+          <h1>Code Journal</h1>
+          <a href="#" class="anchor-tag">Entries</a>
+        </div>
       </div>
     </div>
   </header>
   <main class="container">
-    <div class="row">
-      <div class="entry-header">
-        <h2>New Entry</h2>
+    <div data-view="entry-form" id="entry-form">
+      <div class="row">
+        <div class="entry-header">
+          <h2>New Entry</h2>
+        </div>
       </div>
-    </div>
-    <div data-view="entry-form">
       <form action="" id="form">
         <div class="row">
           <div class="column-half">
@@ -68,7 +71,17 @@
         </div>
       </form>
     </div>
-    <div data-view="entries" class="hidden"></div>
+    <div data-view="entries" class="hidden" id="entries">
+      <div class="row-2">
+        <h1>Entries</h1>
+        <a href="#" class="new-button">NEW</a>
+      </div>
+      <div class="hidden" id="no-entries">
+        <p class="no-entries-text">No Entries Have Been Recorded<p>
+      </div>
+      <ul id="list">
+      </ul>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
