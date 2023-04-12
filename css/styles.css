@@ -71,9 +71,11 @@ h1 {
 .new-button {
   background-color: navy;
   color: white;
-  padding: 20px;
-  margin-top: 1rem;
-  border-radius: 15px;
+  padding: 7px;
+  margin-top: 1.8rem;
+  border-radius: 3px;
+  margin-bottom: -1.3rem;
+  font-size: 1.2rem;
 }
 
 .row-2 {

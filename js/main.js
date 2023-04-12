@@ -44,7 +44,7 @@ function renderEntry(entry) {
   const $columnHalfTwo = document.createElement('div');
   $columnHalfTwo.className = 'column-half';
   $row.appendChild($columnHalfTwo);
-  const $header = document.createElement('h1');
+  const $header = document.createElement('h3');
   const $p = document.createElement('p');
   $columnHalfTwo.appendChild($header);
   $columnHalfTwo.appendChild($p);
@@ -55,10 +55,13 @@ function renderEntry(entry) {
 }
 
 const $list = document.querySelector('#list');
+
 document.addEventListener('DOMContentLoaded', function (event) {
   for (let i = 0; i < data.entries.length; i++) {
     $list.appendChild(renderEntry(data.entries[i]));
   }
+  viewSwap(data.view);
+  toggleNoEntries();
 }
 );
 
@@ -75,10 +78,16 @@ function toggleNoEntries() {
 }
 
 const $anchorTag = document.querySelector('.anchor-tag');
-$anchorTag.addEventListener('click', viewSwap('entries'));
+$anchorTag.addEventListener('click', function () {
+  viewSwap('entries');
+}
+);
 
-const $anchortagTwo = document.querySelector('.new-button');
-$anchortagTwo.addEventListener('click', viewSwap('entry-form'));
+const $anchorTagTwo = document.querySelector('.new-button');
+$anchorTagTwo.addEventListener('click', function () {
+  viewSwap('entry-form');
+}
+);
 
 function viewSwap(string) {
   if (string === 'entries') {
@@ -88,4 +97,5 @@ function viewSwap(string) {
     $entries.classList.add('hidden');
     $entryForm.classList.remove('hidden');
   }
+  data.view = string;
 }
