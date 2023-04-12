@@ -104,3 +104,11 @@ ul {
   margin-top: 5rem;
   text-align: center;
 }
+
+.fa-solid {
+  margin-left: 60%;
+}
+
+h3 {
+  display: inline-block;
+}
