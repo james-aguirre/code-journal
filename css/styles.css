@@ -99,3 +99,8 @@ ul {
   margin: 0;
   padding: 0;
 }
+
+.no-entries-text {
+  margin-top: 5rem;
+  text-align: center;
+}
