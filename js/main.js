@@ -8,6 +8,7 @@ const $entries = document.getElementById('entries');
 const $noEntries = document.getElementById('no-entries');
 const $anchorTag = document.querySelector('.anchor-tag');
 const $anchorTagTwo = document.querySelector('.new-button');
+const $formHeader = document.querySelector('.entry-header');
 
 $image.addEventListener('input', function (event) {
   $photo.setAttribute('src', event.target.value);
@@ -39,6 +40,12 @@ $form.addEventListener('submit', function (event) {
     messageData.notes = event.target.elements.notes.value;
     const dataEntryIndex = data.entries.length - data.editing.entryId;
     data.entries[dataEntryIndex] = messageData;
+    data.entries.splice(dataEntryIndex, 1, messageData);
+    $formHeader.textContent = 'New entry';
+    data.editing = null;
+    viewSwap('entries');
+    location.reload();
+    toggleNoEntries();
   }
 }
 );
@@ -62,12 +69,16 @@ function renderEntry(entry) {
   const $columnHalfTwo = document.createElement('div');
   $columnHalfTwo.className = 'column-half';
   $row.appendChild($columnHalfTwo);
+  const $columnHalfTwoHeader = document.createElement('div');
+  $columnHalfTwoHeader.className = 'title-edit';
+  $columnHalfTwo.appendChild($columnHalfTwoHeader);
+
   const $header = document.createElement('h3');
   const $fontAwesome = document.createElement('i');
   const $p = document.createElement('p');
   $fontAwesome.className = 'fa-solid fa-pencil';
-  $columnHalfTwo.appendChild($header);
-  $columnHalfTwo.appendChild($fontAwesome);
+  $columnHalfTwoHeader.appendChild($header);
+  $columnHalfTwoHeader.appendChild($fontAwesome);
   $columnHalfTwo.appendChild($p);
 
   $header.textContent = entry.title;
