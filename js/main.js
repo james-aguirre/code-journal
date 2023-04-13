@@ -17,27 +17,29 @@ $image.addEventListener('input', function (event) {
 $form.addEventListener('submit', function (event) {
   event.preventDefault();
   const messageData = {};
-  // if (data.editing === null) {
-  messageData.entryId = data.nextEntryId;
-  data.nextEntryId++;
-  messageData.title = event.target.elements.title.value;
-  messageData.img = event.target.elements.img.value;
-  messageData.notes = event.target.elements.notes.value;
-  data.entries.unshift(messageData);
-  $photo.setAttribute('src', 'images/placeholder-image-square.jpg');
-  $form.reset();
-  // updated code below
-  $list.prepend(renderEntry(messageData));
-  viewSwap('entries');
-  toggleNoEntries();
-  // }
-  // 3rd edit below
-  // if (data.editing !== null)
-  // messageData.entryId = data.editing.entryId;
-  // messageData.title = event.target.elements.title.value
-  // messageData.img = event.target.elements.img.value
-  // messageData.notes = event.target.elements.notes.value
-  // data.editing = messageData
+  if (data.editing === null) {
+    messageData.entryId = data.nextEntryId;
+    data.nextEntryId++;
+    messageData.title = event.target.elements.title.value;
+    messageData.img = event.target.elements.img.value;
+    messageData.notes = event.target.elements.notes.value;
+    data.entries.unshift(messageData);
+    $photo.setAttribute('src', 'images/placeholder-image-square.jpg');
+    $form.reset();
+    // updated code below
+    $list.prepend(renderEntry(messageData));
+    viewSwap('entries');
+    toggleNoEntries();
+
+    // 3rd edit below
+  } else if (data.editing !== null) {
+    messageData.entryId = data.editing.entryId;
+    messageData.title = event.target.elements.title.value;
+    messageData.img = event.target.elements.img.value;
+    messageData.notes = event.target.elements.notes.value;
+    const dataEntryIndex = data.entries.length - data.editing.entryId;
+    data.entries[dataEntryIndex] = messageData;
+  }
 }
 );
 
