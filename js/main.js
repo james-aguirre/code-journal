@@ -1,3 +1,4 @@
+// global dom variables
 const $image = document.getElementById('img');
 const $photo = document.getElementById('img-placeholder');
 const $form = document.querySelector('#form');
@@ -16,6 +17,7 @@ $image.addEventListener('input', function (event) {
 $form.addEventListener('submit', function (event) {
   event.preventDefault();
   const messageData = {};
+  // if (data.editing === null) {
   messageData.entryId = data.nextEntryId;
   data.nextEntryId++;
   messageData.title = event.target.elements.title.value;
@@ -28,7 +30,14 @@ $form.addEventListener('submit', function (event) {
   $list.prepend(renderEntry(messageData));
   viewSwap('entries');
   toggleNoEntries();
-
+  // }
+  // 3rd edit below
+  // if (data.editing !== null)
+  // messageData.entryId = data.editing.entryId;
+  // messageData.title = event.target.elements.title.value
+  // messageData.img = event.target.elements.img.value
+  // messageData.notes = event.target.elements.notes.value
+  // data.editing = messageData
 }
 );
 
@@ -95,7 +104,8 @@ function viewSwap(string) {
   if (string === 'entries') {
     $entries.classList.remove('hidden');
     $entryForm.classList.add('hidden');
-  } else if (string === 'entry-form') {
+  } else
+  if (string === 'entry-form') {
     $entries.classList.add('hidden');
     $entryForm.classList.remove('hidden');
   }
@@ -118,9 +128,9 @@ $list.addEventListener('click', function () {
   const $notes = document.querySelector('#notes');
   const $headerNewEntry = document.querySelector('.entry-header');
 
-  $headerNewEntry.textContent = 'Edit Entry';
-  $title.textContent = data.editing.title;
-  $img.textContent = data.editing.img;
+  $headerNewEntry.innerHTML = 'Edit Entry';
+  $title.value = data.editing.title;
+  $img.value = data.editing.img;
   $notes.textContent = data.editing.notes;
 }
 );
