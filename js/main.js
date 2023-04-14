@@ -26,7 +26,6 @@ $form.addEventListener('submit', function (event) {
     messageData.notes = event.target.elements.notes.value;
     data.entries.unshift(messageData);
     $photo.setAttribute('src', 'images/placeholder-image-square.jpg');
-    $form.reset();
     // updated code below
     $list.prepend(renderEntry(messageData));
     $form.reset();
@@ -35,9 +34,13 @@ $form.addEventListener('submit', function (event) {
 
     // 3rd edit below, this is to fill out form template save edit information on submit
   } else {
-    data.editing.title = event.target.elements.title.value;
-    data.editing.img = event.target.elements.img.value;
-    data.editing.notes = event.target.elements.notes.value;
+
+    messageData.title = event.target.elements.title.value;
+    messageData.img = event.target.elements.img.value;
+    messageData.notes = event.target.elements.notes.value;
+
+    const dataEntryIndex = data.entries.length - data.editing.entryId;
+    data.entries[dataEntryIndex] = messageData;
 
     for (let i = 0; i < $list.childNodes.length; i++) {
       if ($list.childNodes[i].tagName === 'LI' && $list.childNodes[i].dataset.entryId * 1 === data.editing.entryId) {
