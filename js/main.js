@@ -35,6 +35,7 @@ $form.addEventListener('submit', function (event) {
     // 3rd edit below, this is to fill out form template save edit information on submit
   } else {
 
+    messageData.entryId = data.editing.entryId;
     messageData.title = event.target.elements.title.value;
     messageData.img = event.target.elements.img.value;
     messageData.notes = event.target.elements.notes.value;
@@ -45,7 +46,6 @@ $form.addEventListener('submit', function (event) {
     for (let i = 0; i < $list.childNodes.length; i++) {
       if ($list.childNodes[i].tagName === 'LI' && $list.childNodes[i].dataset.entryId * 1 === data.editing.entryId) {
         $list.childNodes[i].replaceWith(renderEntry(messageData));
-        $list.childNodes[i].setAttribute('data-entry-id', data.editing.entryId);
       }
     }
     $form.reset();
@@ -92,6 +92,7 @@ function renderEntry(entry) {
   return $li;
 }
 
+// to create all entries from the pre built dom tree
 document.addEventListener('DOMContentLoaded', function (event) {
   for (let i = 0; i < data.entries.length; i++) {
     $list.appendChild(renderEntry(data.entries[i]));
@@ -142,7 +143,7 @@ $list.addEventListener('click', function () {
       if (data.entries[i].entryId === entryId) {
         data.editing = data.entries[i];
       }
-    } viewSwap('entry-form');
+    }
   }
   const $title = document.querySelector('#title');
   const $img = document.querySelector('#img');
@@ -152,5 +153,6 @@ $list.addEventListener('click', function () {
   $title.value = data.editing.title;
   $img.value = data.editing.img;
   $notes.innerHTML = data.editing.notes;
+  viewSwap('entry-form');
 }
 );
