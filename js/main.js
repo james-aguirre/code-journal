@@ -44,7 +44,8 @@ $form.addEventListener('submit', function (event) {
 
     for (let i = 0; i < $list.childNodes.length; i++) {
       if ($list.childNodes[i].tagName === 'LI' && $list.childNodes[i].dataset.entryId * 1 === data.editing.entryId) {
-        $list.childNodes[i].replaceWith(renderEntry(data.editing));
+        $list.childNodes[i].replaceWith(renderEntry(messageData));
+        $list.childNodes[i].setAttribute('data-entry-id', data.editing.entryId);
       }
     }
     $form.reset();
@@ -115,27 +116,25 @@ $anchorTag.addEventListener('click', function () {
 
 $anchorTagTwo.addEventListener('click', function () {
   viewSwap('entry-form');
-  const $notes = document.querySelector('#notes');
-  $notes.innerHTML = '';
 }
 );
 
+// this function to stay on same page during refresh as wall as swap views without reloading page
 function viewSwap(string) {
   if (string === 'entries') {
     $entries.classList.remove('hidden');
     $entryForm.classList.add('hidden');
-  } else
-  if (string === 'entry-form') {
+    data.view = string;
+  } else {
     $entries.classList.add('hidden');
     $entryForm.classList.remove('hidden');
+    data.view = string;
   }
-  data.view = string;
 }
 
 // This is to swap pages if icon is clicked
 $list.addEventListener('click', function () {
   if (event.target.tagName === 'I') {
-    viewSwap('entry-form');
     // in quotes + brackets to grab the nearest element with data-entry-id attribute
     let entryId = event.target.closest('[data-entry-id]').dataset.entryId;
     entryId = entryId * 1;
@@ -143,7 +142,7 @@ $list.addEventListener('click', function () {
       if (data.entries[i].entryId === entryId) {
         data.editing = data.entries[i];
       }
-    }
+    } viewSwap('entry-form');
   }
   const $title = document.querySelector('#title');
   const $img = document.querySelector('#img');
