@@ -104,3 +104,22 @@ ul {
   margin-top: 5rem;
   text-align: center;
 }
+
+.fa-solid {
+  margin-top: 1.5rem;
+  margin-left: 70%;
+  color: navy;
+}
+
+h3 {
+  display: inline-block;
+}
+
+.title-edit {
+  display: flex;
+  justify-content: space-between;
+}
+
+.column-half {
+  padding: 0.4rem;
+}
