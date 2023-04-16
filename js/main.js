@@ -146,7 +146,7 @@ $modalCancel.addEventListener('click', function (event) {
 $modalConfirm.addEventListener('click', function (event) {
   // to match entries index in data.entries with its corresponding entryId
   const dataEntryIndex = data.entries.length - data.editing.entryId;
-  delete data.entries[dataEntryIndex];
+  data.entries.splice(dataEntryIndex, 1);
   // simple for loop to match up corresponding LI element with current entry
   for (let i = 0; i < $list.childNodes.length; i++) {
     if ($list.childNodes[i].tagName === 'LI' && $list.childNodes[i].dataset.entryId * 1 === data.editing.entryId) {
