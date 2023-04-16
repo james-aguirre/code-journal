@@ -10,6 +10,9 @@ const $anchorTag = document.querySelector('.anchor-tag');
 const $anchorTagTwo = document.querySelector('.new-button');
 const $deleteButton = document.querySelector('.delete-button');
 const $formHeader = document.querySelector('.entry-header');
+const $modal = document.querySelector('.modal');
+const $modalCancel = document.querySelector('.modal-cancel');
+const $modalConfirm = document.querySelector('.modal-confirm');
 
 $image.addEventListener('input', function (event) {
   $photo.setAttribute('src', event.target.value);
@@ -42,6 +45,7 @@ $form.addEventListener('submit', function (event) {
     messageData.img = event.target.elements.img.value;
     messageData.notes = event.target.elements.notes.value;
 
+    // this variable is to match the objects entryId with its corresponding index in the entries array index
     const dataEntryIndex = data.entries.length - data.editing.entryId;
     data.entries[dataEntryIndex] = messageData;
 
@@ -55,6 +59,7 @@ $form.addEventListener('submit', function (event) {
     $formHeader.textContent = 'New entry';
     data.editing = null;
   }
+  $deleteButton.classList.add('hidden');
 }
 );
 
@@ -126,7 +131,24 @@ $anchorTagTwo.addEventListener('click', function () {
 );
 
 // modal open function
+$deleteButton.addEventListener('click', function (event) {
+  $modal.classList.remove('hidden');
+}
+);
 
+// close the modal
+$modalCancel.addEventListener('click', function (event) {
+  $modal.classList.add('hidden');
+}
+);
+
+// to delete entry from modal button
+$modalConfirm.addEventListener('click', function (event) {
+  const dataEntryIndex = data.entries.length - data.editing.entryId;
+  delete data.entries[dataEntryIndex];
+
+}
+);
 // this function is to stay on same page during refresh as well as swap views without reloading page
 function viewSwap(string) {
   if (string === 'entries') {
@@ -160,7 +182,7 @@ $list.addEventListener('click', function () {
   $title.value = data.editing.title;
   $img.value = data.editing.img;
   $notes.innerHTML = data.editing.notes;
-  $deleteButton.removeAttribute('class', 'hidden');
+  $deleteButton.classList.remove('hidden');
   viewSwap('entry-form');
 }
 );
