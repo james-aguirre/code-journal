@@ -8,6 +8,7 @@ const $entries = document.getElementById('entries');
 const $noEntries = document.getElementById('no-entries');
 const $anchorTag = document.querySelector('.anchor-tag');
 const $anchorTagTwo = document.querySelector('.new-button');
+const $deleteButton = document.querySelector('.delete-button');
 const $formHeader = document.querySelector('.entry-header');
 
 $image.addEventListener('input', function (event) {
@@ -33,6 +34,7 @@ $form.addEventListener('submit', function (event) {
     toggleNoEntries();
 
     // 3rd edit below, this is to fill out form template save edit information on submit
+    // This is to replace pre exisiting entry in entries array with edited version && load it into the dom tree without refreshing page
   } else {
 
     messageData.entryId = data.editing.entryId;
@@ -102,6 +104,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
 }
 );
 
+// to toggle no entries text if entries array is null
 function toggleNoEntries() {
   if (data.entries.length === 0) {
     $noEntries.classList.remove('hidden');
@@ -115,12 +118,16 @@ $anchorTag.addEventListener('click', function () {
 }
 );
 
+// button for new entry form
 $anchorTagTwo.addEventListener('click', function () {
+  $deleteButton.setAttribute('class', 'hidden');
   viewSwap('entry-form');
 }
 );
 
-// this function to stay on same page during refresh as wall as swap views without reloading page
+// modal open function
+
+// this function is to stay on same page during refresh as well as swap views without reloading page
 function viewSwap(string) {
   if (string === 'entries') {
     $entries.classList.remove('hidden');
@@ -133,7 +140,7 @@ function viewSwap(string) {
   }
 }
 
-// This is to swap pages if icon is clicked
+// This is to swap views if icon is clicked
 $list.addEventListener('click', function () {
   if (event.target.tagName === 'I') {
     // in quotes + brackets to grab the nearest element with data-entry-id attribute
@@ -153,6 +160,7 @@ $list.addEventListener('click', function () {
   $title.value = data.editing.title;
   $img.value = data.editing.img;
   $notes.innerHTML = data.editing.notes;
+  $deleteButton.removeAttribute('class', 'hidden');
   viewSwap('entry-form');
 }
 );

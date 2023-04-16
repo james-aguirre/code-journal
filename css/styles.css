@@ -16,7 +16,6 @@ button {
   height: 30px;
   border-radius: 10px;
   margin-top: 2%;
-  margin-left: 48rem;
 }
 
 input {
@@ -55,6 +54,7 @@ h1 h2 {
 
 .form-actions {
   display: flex;
+  flex-basis: 50%;
 }
 
 a {
@@ -83,6 +83,7 @@ h1 {
   display: flex;
   height: 2.5rem;
   margin-bottom: 2rem;
+  width: 100%;
 }
 
 .anchor-tag {
@@ -122,4 +123,50 @@ h3 {
 
 .column-half {
   padding: 0.4rem;
+}
+
+.delete-button {
+  text-decoration: underline;
+  color: red;
+  font-size: 0.8rem;
+  width: 5rem;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3.5rem;
+}
+
+.modal {
+  position: absolute;
+  left: 50%;
+  margin-left: -11rem;
+  top: 50%;
+  margin-top: -7rem;
+  height: 9rem;
+  width: 26rem;
+  background-color: white;
+  border-color: black;
+  border-style: solid;
+  padding-left: 1rem;
+  text-align: center;
+}
+
+.modal-confirm {
+  background-color: red;
+  margin-right: 1rem;
+}
+
+.modal-cancel {
+  background-color: darkgray;
+  color: black;
+}
+
+.overlay {
+  background: (transparent, rgba(20, 16, 16, 0.671));
+}
+
+form {
+  opacity: 0.4;
 }

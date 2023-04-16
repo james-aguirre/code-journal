@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body class="overlay">
   <header id="main-header">
     <div class="container">
       <div class="header">
@@ -62,12 +62,22 @@
               required>
             </textarea>
           </div>
-          <div class="form-actions">
+
+          <div class="row-2">
+            <a href="#" class="delete-button">Delete Entry</a>
             <button
-              type="submit"
-              >Save
+                type="submit"
+                >Save
             </button>
+            <div class="modal">
+              <p>Are you sure you want to delete this entry?</p>
+              <div class="modal-buttons">
+                <button class="modal-cancel">Cancel</button>
+                <button class="modal-confirm">Confirm</button>
+              </div>
+            </div>
           </div>
+
         </div>
       </form>
     </div>
