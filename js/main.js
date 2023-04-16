@@ -144,9 +144,19 @@ $modalCancel.addEventListener('click', function (event) {
 
 // to delete entry from modal button
 $modalConfirm.addEventListener('click', function (event) {
+  // to match entries index in data.entries with its corresponding entryId
   const dataEntryIndex = data.entries.length - data.editing.entryId;
   delete data.entries[dataEntryIndex];
-
+  // simple for loop to match up corresponding LI element with current entry
+  for (let i = 0; i < $list.childNodes.length; i++) {
+    if ($list.childNodes[i].tagName === 'LI' && $list.childNodes[i].dataset.entryId * 1 === data.editing.entryId) {
+      const deleted = $list.childNodes[i];
+      $list.removeChild(deleted);
+    }
+  }
+  toggleNoEntries();
+  $modal.classList.add('hidden');
+  viewSwap('entries');
 }
 );
 // this function is to stay on same page during refresh as well as swap views without reloading page
