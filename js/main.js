@@ -13,6 +13,12 @@ const $formHeader = document.querySelector('.entry-header');
 const $modal = document.querySelector('.modal');
 const $modalCancel = document.querySelector('.modal-cancel');
 const $modalConfirm = document.querySelector('.modal-confirm');
+const $body = document.querySelector('.light');
+const $title = document.querySelector('#title');
+const $img = document.querySelector('#img');
+const $notes = document.querySelector('#notes');
+const $headerNewEntry = document.querySelector('.entry-header');
+const $saveDeleteButtons = document.querySelector('.row-2');
 
 $image.addEventListener('input', function (event) {
   $photo.setAttribute('src', event.target.value);
@@ -104,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   for (let i = 0; i < data.entries.length; i++) {
     $list.appendChild(renderEntry(data.entries[i]));
   }
-  viewSwap(data.view);
+  viewSwap('entries');
   toggleNoEntries();
 }
 );
@@ -125,7 +131,8 @@ $anchorTag.addEventListener('click', function () {
 
 // button for new entry form
 $anchorTagTwo.addEventListener('click', function () {
-  $deleteButton.setAttribute('class', 'hidden');
+  $deleteButton.classList.add('hidden');
+  $saveDeleteButtons.classList.add('single-button');
   viewSwap('entry-form');
 }
 );
@@ -139,6 +146,10 @@ $deleteButton.addEventListener('click', function (event) {
 // close the modal
 $modalCancel.addEventListener('click', function (event) {
   $modal.classList.add('hidden');
+  $body.classList.remove('dark');
+  $title.classList.remove('inputs-dark');
+  $img.classList.remove('inputs-dark');
+  $notes.classList.remove('inputs-dark');
 }
 );
 
@@ -184,15 +195,12 @@ $list.addEventListener('click', function () {
       }
     }
   }
-  const $title = document.querySelector('#title');
-  const $img = document.querySelector('#img');
-  const $notes = document.querySelector('#notes');
-  const $headerNewEntry = document.querySelector('.entry-header');
   $headerNewEntry.innerHTML = 'Edit Entry';
   $title.value = data.editing.title;
   $img.value = data.editing.img;
   $notes.innerHTML = data.editing.notes;
   $deleteButton.classList.remove('hidden');
+  $saveDeleteButtons.classList.remove('single-button');
   viewSwap('entry-form');
 }
 );
