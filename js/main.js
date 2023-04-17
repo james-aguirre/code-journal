@@ -19,6 +19,8 @@ const $img = document.querySelector('#img');
 const $notes = document.querySelector('#notes');
 const $headerNewEntry = document.querySelector('.entry-header');
 const $saveDeleteButtons = document.querySelector('.row-2');
+const $mainHeader = document.querySelector('#main-header');
+const $saveButton = document.querySelector('.save-button');
 
 $image.addEventListener('input', function (event) {
   $photo.setAttribute('src', event.target.value);
@@ -140,16 +142,30 @@ $anchorTagTwo.addEventListener('click', function () {
 // modal open function
 $deleteButton.addEventListener('click', function (event) {
   $modal.classList.remove('hidden');
+  $body.classList.add('overlay');
+  $notes.classList.add('dark');
+  $title.classList.add('dark');
+  $photo.classList.add('opacity');
+  $img.classList.add('dark');
+  $mainHeader.classList.add('opacity');
+  $deleteButton.classList.add('opacity');
+  $saveButton.classList.add('opacity');
+  $formHeader.classList.add('opacity');
 }
 );
 
 // close the modal
 $modalCancel.addEventListener('click', function (event) {
   $modal.classList.add('hidden');
-  $body.classList.remove('dark');
-  $title.classList.remove('inputs-dark');
-  $img.classList.remove('inputs-dark');
-  $notes.classList.remove('inputs-dark');
+  $body.classList.remove('overlay');
+  $notes.classList.remove('dark');
+  $title.classList.remove('dark');
+  $img.classList.remove('dark');
+  $photo.classList.remove('opacity');
+  $mainHeader.classList.remove('opacity');
+  $deleteButton.classList.remove('opacity');
+  $saveButton.classList.remove('opacity');
+  $formHeader.classList.remove('opacity');
 }
 );
 
@@ -167,6 +183,14 @@ $modalConfirm.addEventListener('click', function (event) {
   }
   toggleNoEntries();
   $modal.classList.add('hidden');
+  $body.classList.remove('overlay');
+  $notes.classList.remove('dark');
+  $title.classList.remove('dark');
+  $img.classList.remove('dark');
+  $photo.classList.remove('opacity');
+  $mainHeader.classList.remove('opacity');
+  $deleteButton.classList.remove('opacity');
+  $saveButton.classList.remove('opacity');
   viewSwap('entries');
 }
 );
