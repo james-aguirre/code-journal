@@ -13,14 +13,15 @@ const $formHeader = document.querySelector('.entry-header');
 const $modal = document.querySelector('.modal');
 const $modalCancel = document.querySelector('.modal-cancel');
 const $modalConfirm = document.querySelector('.modal-confirm');
-const $body = document.querySelector('.light');
 const $title = document.querySelector('#title');
 const $img = document.querySelector('#img');
 const $notes = document.querySelector('#notes');
 const $headerNewEntry = document.querySelector('.entry-header');
 const $saveDeleteButtons = document.querySelector('.row-2');
-const $mainHeader = document.querySelector('#main-header');
-const $saveButton = document.querySelector('.save-button');
+// const $mainHeader = document.querySelector('#main-header');
+// const $saveButton = document.querySelector('.save-button');
+// const $modalContainer = document.querySelector('#modal-container');
+const $dialog = document.querySelector('#dialog');
 
 $image.addEventListener('input', function (event) {
   $photo.setAttribute('src', event.target.value);
@@ -112,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   for (let i = 0; i < data.entries.length; i++) {
     $list.appendChild(renderEntry(data.entries[i]));
   }
-  viewSwap('entries');
+  viewSwap(data.view);
   toggleNoEntries();
 }
 );
@@ -142,30 +143,36 @@ $anchorTagTwo.addEventListener('click', function () {
 // modal open function
 $deleteButton.addEventListener('click', function (event) {
   $modal.classList.remove('hidden');
-  $body.classList.add('overlay');
-  $notes.classList.add('dark');
-  $title.classList.add('dark');
-  $photo.classList.add('opacity');
-  $img.classList.add('dark');
-  $mainHeader.classList.add('opacity');
-  $deleteButton.classList.add('opacity');
-  $saveButton.classList.add('opacity');
-  $formHeader.classList.add('opacity');
+  $dialog.showModal();
+  // $body.classList.add('dark');
+  //  $form.classList.add('opacity');
+  //  $modal.classList.remove('opacity');
+  //  $body.classList.add('overlay');
+  //  $notes.classList.add('dark');
+  //  $title.classList.add('dark');
+  //  $photo.classList.add('opacity');
+  //  $img.classList.add('dark');
+  // $mainHeader.setAttribute.add('id', 'modal-container');
+  //  $deleteButton.classList.add('opacity');
+  //  $saveButton.classList.add('opacity');
+  //  $formHeader.classList.add('opacity');
 }
 );
 
 // close the modal
 $modalCancel.addEventListener('click', function (event) {
-  $modal.classList.add('hidden');
-  $body.classList.remove('overlay');
-  $notes.classList.remove('dark');
-  $title.classList.remove('dark');
-  $img.classList.remove('dark');
-  $photo.classList.remove('opacity');
-  $mainHeader.classList.remove('opacity');
-  $deleteButton.classList.remove('opacity');
-  $saveButton.classList.remove('opacity');
-  $formHeader.classList.remove('opacity');
+//  $modal.classList.add('hidden');
+  $dialog.close();
+  event.preventDefault();
+  // $body.classList.remove('overlay');
+  //  $notes.classList.remove('dark');
+  //  $title.classList.remove('dark');
+  //  $img.classList.remove('dark');
+  //  $photo.classList.remove('opacity');
+  //  $mainHeader.classList.remove('opacity');
+  //  $deleteButton.classList.remove('opacity');
+  //  $saveButton.classList.remove('opacity');
+  //  $formHeader.classList.remove('opacity');
 }
 );
 
@@ -182,19 +189,21 @@ $modalConfirm.addEventListener('click', function (event) {
     }
   }
   toggleNoEntries();
-  $modal.classList.add('hidden');
-  $body.classList.remove('overlay');
-  $notes.classList.remove('dark');
-  $title.classList.remove('dark');
-  $img.classList.remove('dark');
-  $photo.classList.remove('opacity');
-  $mainHeader.classList.remove('opacity');
-  $deleteButton.classList.remove('opacity');
-  $saveButton.classList.remove('opacity');
+  //  $modal.classList.add('hidden');
+  //  $body.classList.remove('overlay');
+  //  $notes.classList.remove('dark');
+  //  $title.classList.remove('dark');
+  // $img.classList.remove('dark');
+  // $photo.classList.remove('opacity');
+  // $mainHeader.classList.remove('opacity');
+  // $deleteButton.classList.remove('opacity');
+  // $saveButton.classList.remove('opacity');
   viewSwap('entries');
+  $dialog.close();
+  event.preventDefault();
 }
 );
-// this function is to stay on same page during refresh as well as swap views without reloading page
+// To swap views
 function viewSwap(string) {
   if (string === 'entries') {
     $entries.classList.remove('hidden');
