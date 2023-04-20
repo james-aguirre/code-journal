@@ -10,7 +10,8 @@ const $anchorTag = document.querySelector('.anchor-tag');
 const $anchorTagTwo = document.querySelector('.new-button');
 const $deleteButton = document.querySelector('.delete-button');
 const $formHeader = document.querySelector('.entry-header');
-const $modal = document.querySelector('.modal');
+const $modal = document.querySelector('.modal-dialog');
+const $modalContainer = document.querySelector('.modal-container');
 const $modalCancel = document.querySelector('.modal-cancel');
 const $modalConfirm = document.querySelector('.modal-confirm');
 const $title = document.querySelector('#title');
@@ -18,10 +19,6 @@ const $img = document.querySelector('#img');
 const $notes = document.querySelector('#notes');
 const $headerNewEntry = document.querySelector('.entry-header');
 const $saveDeleteButtons = document.querySelector('.row-2');
-// const $mainHeader = document.querySelector('#main-header');
-// const $saveButton = document.querySelector('.save-button');
-// const $modalContainer = document.querySelector('#modal-container');
-const $dialog = document.querySelector('#dialog');
 
 $image.addEventListener('input', function (event) {
   $photo.setAttribute('src', event.target.value);
@@ -143,36 +140,14 @@ $anchorTagTwo.addEventListener('click', function () {
 // modal open function
 $deleteButton.addEventListener('click', function (event) {
   $modal.classList.remove('hidden');
-  $dialog.showModal();
-  // $body.classList.add('dark');
-  //  $form.classList.add('opacity');
-  //  $modal.classList.remove('opacity');
-  //  $body.classList.add('overlay');
-  //  $notes.classList.add('dark');
-  //  $title.classList.add('dark');
-  //  $photo.classList.add('opacity');
-  //  $img.classList.add('dark');
-  // $mainHeader.setAttribute.add('id', 'modal-container');
-  //  $deleteButton.classList.add('opacity');
-  //  $saveButton.classList.add('opacity');
-  //  $formHeader.classList.add('opacity');
+  $modalContainer.classList.remove('hidden');
 }
 );
 
 // close the modal
 $modalCancel.addEventListener('click', function (event) {
-//  $modal.classList.add('hidden');
-  $dialog.close();
-  event.preventDefault();
-  // $body.classList.remove('overlay');
-  //  $notes.classList.remove('dark');
-  //  $title.classList.remove('dark');
-  //  $img.classList.remove('dark');
-  //  $photo.classList.remove('opacity');
-  //  $mainHeader.classList.remove('opacity');
-  //  $deleteButton.classList.remove('opacity');
-  //  $saveButton.classList.remove('opacity');
-  //  $formHeader.classList.remove('opacity');
+  $modal.classList.add('hidden');
+  $modalContainer.classList.add('hidden');
 }
 );
 
@@ -189,17 +164,9 @@ $modalConfirm.addEventListener('click', function (event) {
     }
   }
   toggleNoEntries();
-  //  $modal.classList.add('hidden');
-  //  $body.classList.remove('overlay');
-  //  $notes.classList.remove('dark');
-  //  $title.classList.remove('dark');
-  // $img.classList.remove('dark');
-  // $photo.classList.remove('opacity');
-  // $mainHeader.classList.remove('opacity');
-  // $deleteButton.classList.remove('opacity');
-  // $saveButton.classList.remove('opacity');
+  $modal.classList.add('hidden');
+  $modalContainer.classList.add('hidden');
   viewSwap('entries');
-  $dialog.close();
   event.preventDefault();
 }
 );
