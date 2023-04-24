@@ -8,7 +8,17 @@ const $entries = document.getElementById('entries');
 const $noEntries = document.getElementById('no-entries');
 const $anchorTag = document.querySelector('.anchor-tag');
 const $anchorTagTwo = document.querySelector('.new-button');
+const $deleteButton = document.querySelector('.delete-button');
 const $formHeader = document.querySelector('.entry-header');
+const $modal = document.querySelector('.modal-dialog');
+const $modalContainer = document.querySelector('.modal-container');
+const $modalCancel = document.querySelector('.modal-cancel');
+const $modalConfirm = document.querySelector('.modal-confirm');
+const $title = document.querySelector('#title');
+const $img = document.querySelector('#img');
+const $notes = document.querySelector('#notes');
+const $headerNewEntry = document.querySelector('.entry-header');
+const $saveDeleteButtons = document.querySelector('.row-2');
 
 $image.addEventListener('input', function (event) {
   $photo.setAttribute('src', event.target.value);
@@ -33,6 +43,7 @@ $form.addEventListener('submit', function (event) {
     toggleNoEntries();
 
     // 3rd edit below, this is to fill out form template save edit information on submit
+    // This is to replace pre exisiting entry in entries array with edited version && load it into the dom tree without refreshing page
   } else {
 
     messageData.entryId = data.editing.entryId;
@@ -40,6 +51,7 @@ $form.addEventListener('submit', function (event) {
     messageData.img = event.target.elements.img.value;
     messageData.notes = event.target.elements.notes.value;
 
+    // this variable is to match the objects entryId with its corresponding index in the entries array index
     const dataEntryIndex = data.entries.length - data.editing.entryId;
     data.entries[dataEntryIndex] = messageData;
 
@@ -53,6 +65,7 @@ $form.addEventListener('submit', function (event) {
     $formHeader.textContent = 'New entry';
     data.editing = null;
   }
+  $deleteButton.classList.add('hidden');
 }
 );
 
@@ -102,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
 }
 );
 
+// to toggle no entries text if entries array is null
 function toggleNoEntries() {
   if (data.entries.length === 0) {
     $noEntries.classList.remove('hidden');
@@ -115,12 +129,48 @@ $anchorTag.addEventListener('click', function () {
 }
 );
 
+// button for new entry form
 $anchorTagTwo.addEventListener('click', function () {
+  $deleteButton.classList.add('hidden');
+  $saveDeleteButtons.classList.add('single-button');
   viewSwap('entry-form');
 }
 );
 
-// this function to stay on same page during refresh as wall as swap views without reloading page
+// modal open function
+$deleteButton.addEventListener('click', function (event) {
+  $modal.classList.remove('hidden');
+  $modalContainer.classList.remove('hidden');
+}
+);
+
+// close the modal
+$modalCancel.addEventListener('click', function (event) {
+  $modal.classList.add('hidden');
+  $modalContainer.classList.add('hidden');
+}
+);
+
+// to delete entry from modal button
+$modalConfirm.addEventListener('click', function (event) {
+  // to match entries index in data.entries with its corresponding entryId
+  const dataEntryIndex = data.entries.length - data.editing.entryId;
+  data.entries.splice(dataEntryIndex, 1);
+  // simple for loop to match up corresponding LI element with current entry
+  for (let i = 0; i < $list.childNodes.length; i++) {
+    if ($list.childNodes[i].tagName === 'LI' && $list.childNodes[i].dataset.entryId * 1 === data.editing.entryId) {
+      const deleted = $list.childNodes[i];
+      $list.removeChild(deleted);
+    }
+  }
+  toggleNoEntries();
+  $modal.classList.add('hidden');
+  $modalContainer.classList.add('hidden');
+  viewSwap('entries');
+  event.preventDefault();
+}
+);
+// To swap views
 function viewSwap(string) {
   if (string === 'entries') {
     $entries.classList.remove('hidden');
@@ -133,7 +183,7 @@ function viewSwap(string) {
   }
 }
 
-// This is to swap pages if icon is clicked
+// This is to swap views if icon is clicked
 $list.addEventListener('click', function () {
   if (event.target.tagName === 'I') {
     // in quotes + brackets to grab the nearest element with data-entry-id attribute
@@ -145,14 +195,12 @@ $list.addEventListener('click', function () {
       }
     }
   }
-  const $title = document.querySelector('#title');
-  const $img = document.querySelector('#img');
-  const $notes = document.querySelector('#notes');
-  const $headerNewEntry = document.querySelector('.entry-header');
   $headerNewEntry.innerHTML = 'Edit Entry';
   $title.value = data.editing.title;
   $img.value = data.editing.img;
   $notes.innerHTML = data.editing.notes;
+  $deleteButton.classList.remove('hidden');
+  $saveDeleteButtons.classList.remove('single-button');
   viewSwap('entry-form');
 }
 );
